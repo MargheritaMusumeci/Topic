@@ -5,6 +5,7 @@ from fastapi.responses import FileResponse
 import os
 from random import randint
 import uuid
+import uvicorn
 
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import random
@@ -58,6 +59,10 @@ async def read_users_me(
     return users.registered_users[username]
 
 ### APP
+
+@api.get('/hello')
+def hello():
+    return "Hello World!"
 
 @app.get("/topic", tags = ["topic"] )
 def get_topic(username: Annotated[str, Depends(oauth2_scheme)], day: str):
@@ -149,3 +154,15 @@ def get_final_rank(username: Annotated[str, Depends(oauth2_scheme)], day:str):
         return final_rank
     else:
         return HTTPException(status_code=404, detail="User not found or not logged in")
+
+
+if __name__ == "__main__":
+    print("Starting webserver...")
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", 8080)),
+        debug=os.getenv("DEBUG", False),
+        log_level=os.getenv('LOG_LEVEL', "info"),
+        proxy_headers=True
+    )
