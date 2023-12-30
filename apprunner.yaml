@@ -1,10 +1,13 @@
 version: 1.0
-runtime: python3.8 
+runtime: python3.11
 build:
   commands:
     build:
-      - pip install fastapi
-      - pip install 'uvicorn[standard]'
-      - pip install python-multipart
+      - pip3 install fastapi
+      - pip3 install 'uvicorn[standard]'
+      - pip3 install python-multipart
 run: 
+  runtime-version: 3.11
+  pre-run:  
+    - pip3 install 'uvicorn[standard]'
   command: uvicorn main:app --port 8080
