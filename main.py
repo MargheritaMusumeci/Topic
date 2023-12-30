@@ -1,4 +1,9 @@
 # TODO: Error Handling
+import subprocess
+import sys
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", fastapi])
+subprocess.check_call([sys.executable, "-m", "pip", "install", uvicorn])
 
 from fastapi import Depends, FastAPI, HTTPException, File, UploadFile
 from fastapi.responses import FileResponse
