@@ -2,8 +2,8 @@
 import subprocess
 import sys
 
-subprocess.check_call([sys.executable, "-m", "pip", "install", fastapi])
-subprocess.check_call([sys.executable, "-m", "pip", "install", uvicorn])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "fastapi"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "'uvicorn[standard]'"])
 
 from fastapi import Depends, FastAPI, HTTPException, File, UploadFile
 from fastapi.responses import FileResponse
