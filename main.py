@@ -2,8 +2,13 @@
 import subprocess
 import sys
 
+subprocess.check_call([sys.executable, "-m", "pip3", "install", "fastapi"])
+subprocess.check_call([sys.executable, "-m", "pip3", "install", "uvicorn[standard]"])
+subprocess.check_call([sys.executable, "-m", "pip3", "install", "python-multipart"])
+
 subprocess.check_call([sys.executable, "-m", "pip", "install", "fastapi"])
-subprocess.check_call([sys.executable, "-m", "pip", "install", "'uvicorn[standard]'"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "uvicorn[standard]"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "python-multipart"])
 
 from fastapi import Depends, FastAPI, HTTPException, File, UploadFile
 from fastapi.responses import FileResponse
